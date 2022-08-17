@@ -21,6 +21,7 @@ class estimator
   private:
     void messageCallback(const std_msgs::Float32MultiArray msg);
     void timerCallback(const ros::TimerEvent& event);
+    int getClosestTracker(const measurement meas);
 
     ros::Subscriber sub_msgs_;
     ros::Timer timer_;
