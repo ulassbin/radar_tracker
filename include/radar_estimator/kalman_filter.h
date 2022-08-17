@@ -4,12 +4,14 @@
 #include <ros/ros.h>
 #include <Eigen/Core>
 #include <Eigen/Dense>
+#include <radar_estimator/common.h>
 
 
 namespace kalman_filter
 {
 class kalmanFilter
 {
+  typedef common::measurement measurement;
   //System model 
   //Xt = A*xt-1 + Bt*Ut + epsilon
   //Sensor model
@@ -18,11 +20,14 @@ class kalmanFilter
   public: 
   kalmanFilter();
   ~kalmanFilter();
+  void iterate(measurement meas);
+  void assign(measurement meas);
+  Eigen::MatrixXd cov_;//(7,7);
+  Eigen::VectorXd mean_;//(7);
+  bool first_ = true;
   private:
   void prediction();
   void measurementUpdate(Eigen::MatrixXd measurement);
-  Eigen::MatrixXd cov_;//(7,7);
-  Eigen::VectorXd mean_;//(7);
   Eigen::MatrixXd cov_p_;//(7,7);
   Eigen::VectorXd mean_p_;//(7);
   std::string name_;

@@ -5,6 +5,9 @@
 #include <vector>
 #include <ros/ros.h>
 #include <std_msgs/Float32MultiArray.h>
+#include <Eigen/Core>
+#include <Eigen/Dense>
+
 namespace common
 {
   struct measurement
@@ -34,6 +37,15 @@ namespace common
   	}
   };
 
+  Eigen::VectorXd measurementToEigen(const measurement meas)
+  {
+  	Eigen::VectorXd m_eig(7);
+  	m_eig << meas.x_, meas.y_,
+             meas.x_vel_, meas.y_vel_,
+             meas.w_, meas.h_, meas.d_;
+    return m_eig;
+  }
+
   std::vector<measurement> parseMeasurements(const std_msgs::Float32MultiArray msg)
   {
   	std::vector<measurement> measurements;
@@ -41,12 +53,12 @@ namespace common
   	std::vector<double> temp_d;
   	if(msg.data.size() == 140)
   	{
-  	  for(int feat_id = 0; feat_id < 14; feat_id++)
+  	  for(int obj_id = 0; obj_id < 10; obj_id++)
   	  {
   	  	temp_d.clear();
-  	  	for(int obj_id = 0; obj_id < 10; obj_id++)
+  	  	for(int feat_id = 0; feat_id < 14; feat_id++)
   	  	{
-  	  	  temp_d.push_back(obj_id*10 + feat_id);
+  	  	  temp_d.push_back(msg.data[obj_id + feat_id*10]);
   	  	}
   	  	temp.parse(temp_d);
   	  	measurements.push_back(temp);

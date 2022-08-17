@@ -29,7 +29,7 @@ class estimator
     bool got_msg_ = false;
 
     visualizer::visualizer uviz_;
-    std::vector<kalman_filter::kalmanFilter> filters_;
+    std::vector<kalman_filter::kalmanFilter> trackers_;
     std::vector<measurement> measurements_;
 };
 };
