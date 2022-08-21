@@ -7,6 +7,7 @@
 #include <std_msgs/Float32MultiArray.h>
 #include <Eigen/Core>
 #include <Eigen/Dense>
+#include <math.h>
 
 namespace common
 {
@@ -46,6 +47,14 @@ namespace common
     return m_eig;
   }
 
+  Eigen::VectorXd toEigen(const measurement meas)
+  {
+    Eigen::VectorXd vect(7);
+    vect << meas.x_, meas.y_, meas.x_vel_, meas.y_vel_,
+            meas.w_, meas.h_, meas.d_;
+    return vect;
+  }
+
   std::vector<measurement> parseMeasurements(const std_msgs::Float32MultiArray msg)
   {
   	std::vector<measurement> measurements;
@@ -70,6 +79,15 @@ namespace common
   	}
   	return measurements;
   };
+
+  double getGaussianValue(Eigen::MatrixXd cov, Eigen::VectorXd diff)
+  {
+   //p(x) = det(2*pi*Σ)^(-1/2)*exp(-1/2*(x-µ)^T*Σ^-1*(x-µ))
+    // diff = (x-µ)
+    double denum = sqrt((2*M_PI*cov).determinant());
+    double num = exp(-1/2.0 * diff.transpose() * cov.inverse() * diff);
+    return num/denum;
+  }
 };
 
 #endif

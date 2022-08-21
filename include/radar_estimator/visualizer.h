@@ -19,6 +19,7 @@ class visualizer
     visualizer();
     void visualizeArrays(std::vector<measurement> measurements);
     void visFilterStates(Eigen::VectorXd mean, Eigen::MatrixXd cov, std::string ns);
+    void visualizeTwo2DGates(double x, double y, Eigen::MatrixXd sk_inv, double tol, int id);
   private:
     ros::Publisher pub_;
 };

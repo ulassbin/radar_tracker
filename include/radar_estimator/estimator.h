@@ -19,10 +19,11 @@ class estimator
     estimator();
    ~estimator();
   private:
+    bool checkMatchValidity(std::vector<std::pair<int,double>> candidates, double& normalizer);
+    int getClosestTracker(const measurement meas);
     void messageCallback(const std_msgs::Float32MultiArray msg);
     void timerCallback(const ros::TimerEvent& event);
-    int getClosestTracker(const measurement meas);
-
+    std::map<int, std::vector<std::pair<int, double>>> getMatchesInGate(double PD);
     ros::Subscriber sub_msgs_;
     ros::Timer timer_;
     ros::NodeHandle private_nh_;

@@ -21,18 +21,20 @@ class kalmanFilter
   kalmanFilter();
   ~kalmanFilter();
   void iterate(measurement meas);
+  void prediction(); // This is in public to just get values before gating.
+  void pdaUpdate(std::vector<std::pair<int,double>> match_vect, std::vector<measurement> measurements, double PD, double norm);
   void assign(measurement meas);
   Eigen::MatrixXd cov_;//(7,7);
   Eigen::VectorXd mean_;//(7);
-  bool first_ = true;
-  private:
-  void prediction();
-  void measurementUpdate(Eigen::MatrixXd measurement);
   Eigen::MatrixXd cov_p_;//(7,7);
   Eigen::VectorXd mean_p_;//(7);
+  bool first_ = true;
+  private:
+  void measurementUpdate(Eigen::MatrixXd measurement);
   std::string name_;
   std::string state_;
   std::vector<double> process_noise_;
+  Eigen::MatrixXd Qt_;
 };
 // p(x) is a gaussian
 // p(x) = det(2*pi*Σ)^(-1/2)*exp(-1/2*(x-µ)^T*Σ^-1*(x-µ))
