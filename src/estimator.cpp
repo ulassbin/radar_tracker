@@ -9,12 +9,11 @@ namespace estimator
   	sub_msgs_ =  nh.subscribe("/lrrObjects", 10, &estimator::messageCallback, this);
     //timer_ = private_nh_.createTimer(ros::Duration(0.1), std::bind(&estimator::timerCallback, this, _1));
     for(int i = 0; i<10; i++)
-      trackers_.push_back(kalman_filter::kalmanFilter());
+      trackers_.push_back(kalman_filter::kalmanFilter(i));
   }
 
   estimator::~estimator()
   {
-  	ROS_INFO("Goodbye");
   }
 
   int estimator::getClosestTracker(const measurement meas) // Nearest neighbour approach
@@ -41,7 +40,7 @@ namespace estimator
     // How about adding velocities and-or volume info?
     double dist_sq = 0;
     double pos_dist = 0;
-    double gate_eps = 0.1;
+    double gate_eps = 1;
     Eigen::VectorXd innovation(7), meas_eig(7);
     Eigen::MatrixXd sk_inv2(2,2);
     std::vector<std::pair<int,double>> gated_measurements;
@@ -62,8 +61,6 @@ namespace estimator
         // We can compute and visualize 2d elipsoids here. 
         pos_dist = (innovation.head(2).transpose() * sk_inv2 *innovation.head(2));
         ROS_INFO("Tracker %d , meas %i, dist %.2f, pose_dist %.2f",i,j,sqrt(dist_sq),sqrt(pos_dist));
-        ROS_INFO("%d %d Innovation \n %.2f, %.2f",i,j, innovation(0),innovation(1));
-        ROS_INFO("%d %d Matrix: \n %.2f %.2f \n %.2f, %.2f",i,j,sk_inv2(0,0), sk_inv2(0,1), sk_inv2(1,0), sk_inv2(1,1));
         if(dist_sq < gate_eps) //
         {
           double gauss_val = PD * common::getGaussianValue(sk_inv2, innovation.head(2)); //Just using 2d values here...
@@ -86,6 +83,7 @@ namespace estimator
       match_prob += pair.second;
     }
     normalizer = 1.0/(base+match_prob);
+    ROS_INFO("No match %.2f, match %.2f",base,match_prob);
     return (match_prob>base); //
   }
 
@@ -99,12 +97,25 @@ namespace estimator
     std::map<int, std::vector<std::pair<int, double>>> matches;
     if(!trackers_[0].first_)
       matches = getMatchesInGate(PD);
+    else
+    {
+      for(int i = 0; i < trackers_.size(); i++)
+      {
+        trackers_[i].assign(measurements_[i]);
+        trackers_[i].first_ = false;
+        uviz_.visFilterStates(trackers_[i].mean_, trackers_[i].cov_, std::to_string(i));
+      }
+      return;
+    }
+
+    ROS_INFO("Matches size %d",matches.size());
     // Now trace the matches...
     for(int i = 0; i < matches.size(); i++)
     {
-
+      ROS_INFO("Track %d has %d matches", i, matches[i].size());
       trackers_[i].prediction(); // Just perform prediction ... 
-      if(checkMatchValidity(matches[i], norm))
+      checkMatchValidity(matches[i], norm);
+      if(true) // checkMatchValidity(matches[i], norm)
       {
         // Form mixture measurement based on bi weights. 
         // one approach is to have measurements formed as 
@@ -114,21 +125,11 @@ namespace estimator
         //normalizer = 1 / (1 - 0.1 * normalizer); // Removing the effect of no match from mixing - Can test it either way if one has time.
         trackers_[i].pdaUpdate(matches[i], measurements_, PD, norm);
       }
-      ROS_INFO("Iterating %d", i);
-      if(trackers_[i].first_)
-      {
-      	trackers_[i].assign(measurements_[i]);
-      	trackers_[i].first_ = false;
-      }
       else
       {
-      	int closest = getClosestTracker(measurements_[i]); // Add only one correspondence at a time. Drop if 
-      	// got correspondence this cycle.
-      	trackers_[closest].iterate(measurements_[i]); // These correspondences are going to be calculated via JIPDA
+        ROS_INFO("Matches %d not valid",i);
       }
-      ROS_INFO("Filtered %d", i);
       uviz_.visFilterStates(trackers_[i].mean_, trackers_[i].cov_, std::to_string(i));
-      ROS_INFO("Visualized %d", i);
     }
   	got_msg_ = true;
   }

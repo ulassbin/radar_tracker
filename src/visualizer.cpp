@@ -68,7 +68,6 @@ namespace visualizer
   	  marker.pose.position.x = measurement.x_;
   	  marker.pose.position.y = measurement.y_;
 
-  	  ROS_INFO("Passing Trough measurement %d",measurement.id_);
   	  count++; // Using local ids;
   	  pub_.publish(marker);
   	}

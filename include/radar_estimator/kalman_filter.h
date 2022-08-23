@@ -18,7 +18,7 @@ class kalmanFilter
   // Yk = HkXk + Vk
   // x = { xpos,ypos, xdot,ydot}
   public: 
-  kalmanFilter();
+  kalmanFilter(int i);
   ~kalmanFilter();
   void iterate(measurement meas);
   void prediction(); // This is in public to just get values before gating.
@@ -31,7 +31,7 @@ class kalmanFilter
   bool first_ = true;
   private:
   void measurementUpdate(Eigen::MatrixXd measurement);
-  std::string name_;
+  int id_;
   std::string state_;
   std::vector<double> process_noise_;
   Eigen::MatrixXd Qt_;
