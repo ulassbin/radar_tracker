@@ -10,6 +10,10 @@
 
 namespace common
 {
+/**
+ * @brief The measurement struct is a custom container that is used to 
+ * convert float vector message type into human interpretable format
+ */
   struct measurement
   {
   	int type_;
@@ -22,6 +26,10 @@ namespace common
   	double w_;
   	double h_;
   	double d_;
+    /**
+     * @brief parse method  parses a double vector into the corresponding fields
+     * @param d is a vector with 14 elements corresponding to features of an object
+     */
   	void parse(std::vector<double> d)
   	{
   	  type_ = d[0];
@@ -37,6 +45,11 @@ namespace common
   	}
   };
 
+  /**
+   * @brief 
+   * @param meas is a measurement struct that is converted and return
+   * @return The Eigen VectorXd format of measurement struct
+   */
   Eigen::VectorXd measurementToEigen(const measurement meas)
   {
   	Eigen::VectorXd m_eig(7);
@@ -45,6 +58,12 @@ namespace common
              meas.w_, meas.h_, meas.d_;
     return m_eig;
   }
+
+  /**
+   * @brief The method to parse ROS message into measurement vector.
+   * @param msg is the ros message to be received from sensor topic
+   * @return the values of messages in measurement struct vector.
+   */
 
   std::vector<measurement> parseMeasurements(const std_msgs::Float32MultiArray msg)
   {
