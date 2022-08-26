@@ -37,7 +37,7 @@ namespace kalman_filter
 
   void kalmanFilter::assign(measurement meas)
   {
-  	mean_ = common::measurementToEigen(meas);
+  	mean_ = common::toEigen(meas);
     cov_p_ = cov_;
     mean_p_ = mean_;
   }
@@ -45,7 +45,7 @@ namespace kalman_filter
   void kalmanFilter::iterate(measurement meas)
   {
   	prediction();
-  	measurementUpdate(common::measurementToEigen(meas));
+  	measurementUpdate(common::toEigen(meas));
   }
 
   void kalmanFilter::prediction()
@@ -96,7 +96,7 @@ namespace kalman_filter
     Kgain = (cov_p_*Ct.transpose())*Sk.inverse();
     for(int id = 0; id < match_vect.size(); id++)
     {
-      inv = (common::measurementToEigen(measurements[match_vect[id].first]) - Ct*mean_p_);
+      inv = (common::toEigen(measurements[match_vect[id].first]) - Ct*mean_p_);
       innovations.push_back(inv);
       weights.push_back(match_vect[id].second*norm);
       ROS_INFO("Track %d, match %d, weight %.2f",this->id_, id, weights[id]);
@@ -119,7 +119,7 @@ namespace kalman_filter
   }
 
 
-  void kalmanFilter::measurementUpdate(Eigen::MatrixXd measurement)
+  void kalmanFilter::measurementUpdate(Eigen::VectorXd measurement)
   {
   	Eigen::MatrixXd Ct(7,7);
   	Ct = Eigen::MatrixXd::Identity(7,7);

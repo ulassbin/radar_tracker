@@ -9,20 +9,67 @@
 
 namespace kalman_filter
 {
+typedef common::measurement measurement;
+
+/**
+ * @brief This is a standard kalman filter implementation
+ * @details This class holds necessary methods to keep track of objects
+ * that are defined as tracks. 
+ * Mostly eigen library is referred to carry out matrix operations. 
+ * System model is assumed to be linear and time-invariant. 
+ * This filter works by continously forming a prediction at each new timestep,
+ * and updating that prediction whenever a new information arrives from a sensor.
+ * How sensor information is relayed to this filter is not a concern of this class.
+ */
+
 class kalmanFilter
 {
-  typedef common::measurement measurement;
   //System model 
   //Xt = A*xt-1 + Bt*Ut + epsilon
   //Sensor model
   // Yk = HkXk + Vk
-  // x = { xpos,ypos, xdot,ydot}
+  // x = { xpos,ypos, xdot,ydot, ...}
   public: 
+  /**
+   * @brief Class constructor with id.
+   */
   kalmanFilter(int i);
+  /**
+   * @brief Destructor definition
+   * @details This could be useful for removing unnecessary tracks later on.
+   */
   ~kalmanFilter();
+  /**
+  * @brief Iterates the filter with measurement 
+  * @param meas is the measurement input to filter.
+  * @details Calls the prediction step, and then measurement Update Method.
+  */
   void iterate(measurement meas);
-  void prediction(); // This is in public to just get values before gating.
+  /**
+  * @brief Makes a prediction with current states.
+  * @details Changes mean and cov values of filter by 
+  * just using previous values.
+  */
+  void prediction(); 
+  /**
+  * @brief Updates the filter with measurement set.
+  * @param match_vect is the set of corresponding measurements to this filter.
+  * @param measurements is the measurement vector, which holds the raw values
+  * @param PD is the probability of detection (This is used in updating step)
+  * @param norm is the normalization factor for weights b0,b1,b2 ... which are 
+  * the weights that average the correspondences.
+  * @details For this filter, match_vect holds the measurement index and the value obtained
+  * from the gaussian with the measurements innovation. This innovation is carried to here
+  * not to recompute values from gaussian. It was previously computed at gating method.
+  * This function, will update the state of the filter with the weights and the content
+  * of the set of matches. It is basically a kalman filter update step with more than
+  * one measurements, but they are weighted. 
+  */
   void pdaUpdate(std::vector<std::pair<int,double>> match_vect, std::vector<measurement> measurements, double PD, double norm);
+  /**
+   * @brief Forms filters initial state
+   * @param meas is the first percieved input to start the filter
+   */
   void assign(measurement meas);
   Eigen::MatrixXd cov_;//(7,7);
   Eigen::VectorXd mean_;//(7);
@@ -30,7 +77,11 @@ class kalmanFilter
   Eigen::VectorXd mean_p_;//(7);
   bool first_ = true;
   private:
-  void measurementUpdate(Eigen::MatrixXd measurement);
+  /**
+   * @brief Standard KF measurement update
+   * @param measurement is the measurement raw values in Eigen Vect format
+   */
+  void measurementUpdate(Eigen::VectorXd measurement);
   int id_;
   std::string state_;
   std::vector<double> process_noise_;

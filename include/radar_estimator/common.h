@@ -11,6 +11,10 @@
 
 namespace common
 {
+  /**
+   * @brief The measurement struct is a custom container that is used to 
+   * convert float vector message type into human interpretable format
+   */
   struct measurement
   {
   	int type_;
@@ -23,6 +27,10 @@ namespace common
   	double w_;
   	double h_;
   	double d_;
+    /**
+     * @brief parse method  parses a double vector into the corresponding fields
+     * @param d is a vector with 14 elements corresponding to features of an object
+     */
   	void parse(std::vector<double> d)
   	{
   	  type_ = d[0];
@@ -38,14 +46,11 @@ namespace common
   	}
   };
 
-  Eigen::VectorXd measurementToEigen(const measurement meas)
-  {
-  	Eigen::VectorXd m_eig(7);
-  	m_eig << meas.x_, meas.y_,
-             meas.x_vel_, meas.y_vel_,
-             meas.w_, meas.h_, meas.d_;
-    return m_eig;
-  }
+  /**
+   * @brief 
+   * @param meas is a measurement struct that is converted and return
+   * @return The Eigen VectorXd format of measurement struct
+   */
 
   Eigen::VectorXd toEigen(const measurement meas)
   {
@@ -54,6 +59,12 @@ namespace common
             meas.w_, meas.h_, meas.d_;
     return vect;
   }
+
+  /**
+   * @brief The method to parse ROS message into measurement vector.
+   * @param msg is the ros message to be received from sensor topic
+   * @return the values of messages in measurement struct vector.
+   */
 
   std::vector<measurement> parseMeasurements(const std_msgs::Float32MultiArray msg)
   {
@@ -79,6 +90,13 @@ namespace common
   	}
   	return measurements;
   };
+
+  /**
+   * @brief Calculates value of gaussian function with known covariance and difference from mean.
+   * @param cov is the covariance of gaussian density
+   * @param diff is the difference from mean
+   * @return the value of gaussian function with given parameters.
+   */
 
   double getGaussianValue(Eigen::MatrixXd cov, Eigen::VectorXd diff)
   {

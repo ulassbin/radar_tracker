@@ -1,0 +1,19 @@
+actions: []
+authors: ''
+brief: ''
+bugtracker: ''
+depends:
+- tf2_geometry_msgs
+- catkin
+- roscpp
+- std_msgs
+- visualization_msgs
+- eigen
+description: The radar_estimator package
+license: TODO
+maintainers: ulas <ulas@todo.todo>
+msgs: []
+package_type: package
+repo_url: ''
+srvs: []
+url: ''
