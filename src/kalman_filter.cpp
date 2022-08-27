@@ -8,10 +8,10 @@ namespace kalman_filter
   	// max vol in w-h-m is around 3m so +-1.5m initial guess is good
   	ROS_INFO("Constructed blank filter");
   	cov_ = Eigen::MatrixXd(7, 7);
-  	cov_ << 100,0,0,0,0,0,0, // Cov0 init 10m mistake initially
-  	        0,100,0,0,0,0,0, // Velocity? lets say +-1.25 (From min-max in data)
+  	cov_ << 4,0,0,0,0,0,0, // Cov0 init 10m mistake initially
+  	        0,4,0,0,0,0,0, // Velocity? lets say +-1.25 (From min-max in data)
+  	        0,0,1.6,0,0,0,0,
   	        0,0,0,1.6,0,0,0,
-  	        0,0,0,0,1.6,0,0,
   	        0,0,0,0,2.25,0,0,
   	        0,0,0,0,0,2.25,0,
   	        0,0,0,0,0,0,2.25;
@@ -64,10 +64,10 @@ namespace kalman_filter
   	mean_p_ = At*mean_;
   	Eigen::MatrixXd Rt(7,7);
   	// Process noise lets say 1m for position + 0.07*noise_in_velocity =~ 2?
-  	double acc = 0.1; // Process noise could be acceleration term
-  	Rt << pow(delt,4)*acc,0, pow(delt,3)*acc/2,0, 0,0,0,
-  	      0,pow(delt,4)*acc, 0,pow(delt,3)*acc/2, 0,0,0,
-  	      0,0, delt*delt*acc,0, 0,0,0,
+  	double acc = 1; // Process noise could be acceleration term
+  	Rt << pow(delt,4)*acc/4.0,0, pow(delt,3)*acc/2,0, 0,0,0,
+  	      0,pow(delt,4)*acc/4.0, 0,pow(delt,3)*acc/2.0, 0,0,0,
+  	      pow(delt,3)*acc/2,0, delt*delt*acc,0, 0,0,0,
   	      0,0, 0,delt*delt*acc, 0,0,0,
   	      0,0, 0,0, 0.1,0,0,
   	      0,0, 0,0, 0,0.1,0,
@@ -96,6 +96,11 @@ namespace kalman_filter
     Kgain = (cov_p_*Ct.transpose())*Sk.inverse();
     for(int id = 0; id < match_vect.size(); id++)
     {
+      if(match_vect[id].first == -1)
+      {
+        b0 = match_vect[id].second * norm;
+        continue;
+      }
       inv = (common::toEigen(measurements[match_vect[id].first]) - Ct*mean_p_);
       innovations.push_back(inv);
       weights.push_back(match_vect[id].second*norm);
@@ -105,6 +110,8 @@ namespace kalman_filter
     double add_cov = 0;
     for(int i = 0; i < innovations.size(); i++)
     {
+      if(match_vect[i].first == -1)
+        continue;
       Eigen::VectorXd temp(7);
       temp = innovations[i];
       double val1 = temp.transpose() * temp;

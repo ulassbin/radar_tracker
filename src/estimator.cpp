@@ -38,6 +38,7 @@ namespace estimator
     // Two questions comes to mind
     // Is 2d position enough?
     // How about adding velocities and-or volume info?
+    double PG = 1; // Large gate assumption similar to the paper.
     double dist_sq = 0;
     double pos_dist = 0;
     double gate_eps = 1;
@@ -46,13 +47,16 @@ namespace estimator
     std::vector<std::pair<int,double>> gated_measurements;
     std::map<int, std::vector<std::pair<int, double>>> matches;
     std::pair<int ,double> temp_p;
+    double gate_tol = 2.0;
+   double C = 0.3; // C is expected number of false measurements per unit volume of the gate.
+
     for(int i = 0; i < trackers_.size(); i++)
     {
       gated_measurements.clear();
       kalman_filter::kalmanFilter track = trackers_[i]; // Getting a copy of tracker object
       track.prediction(); // Just updating the copy, not the element itself...
       sk_inv2 =  track.cov_p_.block<2,2>(1,1).inverse();
-      uviz_.visualizeTwo2DGates(track.mean_p_(0), track.mean_p_(1), sk_inv2, 5, i);
+      uviz_.visualizeTwo2DGates(track.mean_p_(0), track.mean_p_(1), sk_inv2, gate_tol, i);
       for(int j = 0 ; j < measurements_.size(); j++)
       {
         meas_eig = common::toEigen(measurements_[j]);
@@ -63,10 +67,14 @@ namespace estimator
         ROS_INFO("Tracker %d , meas %i, dist %.2f, pose_dist %.2f",i,j,sqrt(dist_sq),sqrt(pos_dist));
         if(dist_sq < gate_eps) //
         {
-          double gauss_val = PD * common::getGaussianValue(sk_inv2, innovation.head(2)); //Just using 2d values here...
+          double gauss_val = exp(-dist_sq/2.0);//Just using 2d values here...
           gated_measurements.push_back(std::make_pair(j, gauss_val)); 
         }
+        // bj = exp(dist_sq);
       }
+      double ellipse_area = M_PI*(gate_tol/sk_inv2(0,0)*gate_tol/sk_inv2(1,1));
+      double b0 = pow(2*M_PI,2/2)*(C*ellipse_area/(M_PI*1))*(1-PD*PG)/PD; // / denum ...
+      gated_measurements.push_back(std::make_pair(-1, b0));
       matches[i] = gated_measurements; // Assign the gated measurements to track.
     }
     return matches; 
@@ -76,15 +84,18 @@ namespace estimator
   {
     // Calculates normalizer for weights
     // Checks if correspondences is more probable than no match.
-    double base(0.1); // 1-PD for 0;
+    double b0(0.1); // 1-PD for 0;
     double match_prob(0);
     for(auto pair : candidates)
     {
-      match_prob += pair.second;
+      if(pair.first == -1)
+        b0 = pair.second;
+      else
+        match_prob += pair.second; // b1 + b2 + .. bn;
     }
-    normalizer = 1.0/(base+match_prob);
-    ROS_INFO("No match %.2f, match %.2f",base,match_prob);
-    return (match_prob>base); //
+    normalizer = 1.0/(b0+match_prob);
+    ROS_INFO("No match %.2f, match %.2f",b0,match_prob);
+    return (match_prob>b0); //
   }
 
   void estimator::messageCallback(const std_msgs::Float32MultiArray msg)
@@ -110,12 +121,19 @@ namespace estimator
 
     ROS_INFO("Matches size %d",matches.size());
     // Now trace the matches...
+    for(int i = 0; i < trackers_.size(); i++)
+    {
+      trackers_[i].prediction();
+      uviz_.visFilterStates(trackers_[i].mean_, trackers_[i].cov_, std::to_string(i));
+    }
     for(int i = 0; i < matches.size(); i++)
     {
       ROS_INFO("Track %d has %d matches", i, matches[i].size());
-      trackers_[i].prediction(); // Just perform prediction ... 
+       // Just perform prediction ... 
       checkMatchValidity(matches[i], norm);
-      if(true) // checkMatchValidity(matches[i], norm)
+      for(auto pair : matches[i])
+        ROS_INFO("Match %i b%i probability %.2f",i, pair.first, pair.second*norm); // b-1 is no match probability
+      if(matches[i].size() > 1) // checkMatchValidity(matches[i], norm)
       {
         // Form mixture measurement based on bi weights. 
         // one approach is to have measurements formed as 
