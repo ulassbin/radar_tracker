@@ -56,14 +56,14 @@ namespace kalman_filter
   	ROS_INFO("Formed mean_p");
   	Eigen::MatrixXd Rt(7,7);
   	// Process noise lets say 1m for position + 0.07*noise_in_velocity =~ 2?
-  	double acc = 0.1; // Process noise could be acceleration term
-  	Rt << pow(delt,4)*acc,0, pow(delt,3)*acc/2,0, 0,0,0,
-  	      0,pow(delt,4)*acc, 0,pow(delt,3)*acc/2, 0,0,0,
-  	      0,0, delt*delt*acc,0, 0,0,0,
-  	      0,0, 0,delt*delt*acc, 0,0,0,
-  	      0,0, 0,0, 0.1,0,0,
-  	      0,0, 0,0, 0,0.1,0,
-  	      0,0, 0,0, 0,0,0.1;
+    double acc = 1; // Process noise could be acceleration term
+    Rt << pow(delt,4)*acc/4.0,0, pow(delt,3)*acc/2,0, 0,0,0,
+          0,pow(delt,4)*acc/4.0, 0,pow(delt,3)*acc/2.0, 0,0,0,
+          pow(delt,3)*acc/2,0, delt*delt*acc,0, 0,0,0,
+          0,0, 0,delt*delt*acc, 0,0,0,
+          0,0, 0,0, 0.1,0,0,
+          0,0, 0,0, 0,0.1,0,
+          0,0, 0,0, 0,0,0.1;
   	cov_p_ = At*cov_*At.transpose() + Rt;
   }
 
