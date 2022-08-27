@@ -7,10 +7,10 @@ namespace kalman_filter
   	// max vol in w-h-m is around 3m so +-1.5m initial guess is good
   	ROS_INFO("Constructed blank filter");
   	cov_ = Eigen::MatrixXd(7, 7);
-  	cov_ << 100,0,0,0,0,0,0, // Cov0 init 10m mistake initially
-  	        0,100,0,0,0,0,0, // Velocity? lets say +-1.25 (From min-max in data)
+  	cov_ << 25,0,0,0,0,0,0, // Cov0 init 10m mistake initially
+  	        0,25,0,0,0,0,0, // Velocity? lets say +-1.25 (From min-max in data)
+  	        0,0,1.6,0,0,0,0,
   	        0,0,0,1.6,0,0,0,
-  	        0,0,0,0,1.6,0,0,
   	        0,0,0,0,2.25,0,0,
   	        0,0,0,0,0,2.25,0,
   	        0,0,0,0,0,0,2.25;
