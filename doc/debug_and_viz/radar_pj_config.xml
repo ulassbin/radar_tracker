@@ -1,0 +1,829 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root version="2.3.8">
+ <tabbed_widget parent="main_window" name="Main Window">
+  <plotmatrix columns="3" tab_name="plot" rows="4">
+   <plot row="0" style="LinesAndDots" col="0">
+    <range bottom="-5.200000" left="1661806986.105894" top="213.200000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="39" R="214" B="40" name="/estimator_debug/filters.0/prediction_count" custom_transform="noTransform"/>
+    <curve G="201" R="26" B="56" name="/estimator_debug/filters.0/update_count" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="1" style="Lines" col="0">
+    <range bottom="-5.200000" left="1661806986.105894" top="213.200000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="103" R="148" B="189" name="/estimator_debug/filters.2/prediction_count" custom_transform="noTransform"/>
+    <curve G="190" R="23" B="207" name="/estimator_debug/filters.2/update_count" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="2" style="Lines" col="0">
+    <range bottom="-5.200000" left="1661806986.105894" top="213.200000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="39" R="214" B="40" name="/estimator_debug/filters.4/prediction_count" custom_transform="noTransform"/>
+    <curve G="201" R="26" B="56" name="/estimator_debug/filters.4/update_count" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="3" style="Lines" col="0">
+    <range bottom="0.000000" left="0.000000" top="1.000000" right="1.000000"/>
+    <limitY/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="0" style="Lines" col="1">
+    <range bottom="-5.200000" left="1661806986.105894" top="213.200000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="127" R="255" B="14" name="/estimator_debug/filters.1/prediction_count" custom_transform="noTransform"/>
+    <curve G="76" R="241" B="193" name="/estimator_debug/filters.1/update_count" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="1" style="Lines" col="1">
+    <range bottom="-5.200000" left="1661806986.105894" top="213.200000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="189" R="188" B="34" name="/estimator_debug/filters.3/prediction_count" custom_transform="noTransform"/>
+    <curve G="119" R="31" B="180" name="/estimator_debug/filters.3/update_count" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="2" style="Lines" col="1">
+    <range bottom="-5.200000" left="1661806986.105894" top="213.200000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="127" R="255" B="14" name="/estimator_debug/filters.5/prediction_count" custom_transform="noTransform"/>
+    <curve G="76" R="241" B="193" name="/estimator_debug/filters.5/update_count" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="3" style="Lines" col="1">
+    <range bottom="-5.200000" left="1661806986.105894" top="213.200000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="127" R="255" B="14" name="/estimator_debug/filters.9/prediction_count" custom_transform="noTransform"/>
+    <curve G="76" R="241" B="193" name="/estimator_debug/filters.9/update_count" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="0" style="Lines" col="2">
+    <range bottom="-5.200000" left="1661806986.105894" top="213.200000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="103" R="148" B="189" name="/estimator_debug/filters.6/prediction_count" custom_transform="noTransform"/>
+    <curve G="190" R="23" B="207" name="/estimator_debug/filters.6/update_count" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="1" style="Lines" col="2">
+    <range bottom="-5.200000" left="1661806986.105894" top="213.200000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="189" R="188" B="34" name="/estimator_debug/filters.7/prediction_count" custom_transform="noTransform"/>
+    <curve G="119" R="31" B="180" name="/estimator_debug/filters.7/update_count" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="2" style="Lines" col="2">
+    <range bottom="-5.200000" left="1661806986.105894" top="213.200000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="39" R="214" B="40" name="/estimator_debug/filters.8/prediction_count" custom_transform="noTransform"/>
+    <curve G="201" R="26" B="56" name="/estimator_debug/filters.8/update_count" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="3" style="Lines" col="2">
+    <range bottom="0.000000" left="0.000000" top="1.000000" right="1.000000"/>
+    <limitY/>
+    <transform value="noTransform"/>
+   </plot>
+  </plotmatrix>
+  <plotmatrix columns="3" tab_name="plot" rows="4">
+   <plot row="0" style="Lines" col="0">
+    <range bottom="0.900000" left="1661806986.105894" top="1.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="103" R="148" B="189" name="/estimator_debug/filters.0/width" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="1" style="Lines" col="0">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="119" R="31" B="180" name="/estimator_debug/filters.3/width" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="2" style="Lines" col="0">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="127" R="255" B="14" name="/estimator_debug/filters.6/width" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="3" style="Lines" col="0">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="190" R="23" B="207" name="/estimator_debug/filters.9/width" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="0" style="Lines" col="1">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="190" R="23" B="207" name="/estimator_debug/filters.1/width" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="1" style="Lines" col="1">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="39" R="214" B="40" name="/estimator_debug/filters.4/width" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="2" style="Lines" col="1">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="76" R="241" B="193" name="/estimator_debug/filters.7/width" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="3" style="Lines" col="1">
+    <range bottom="0.000000" left="0.000000" top="1.000000" right="1.000000"/>
+    <limitY/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="0" style="Lines" col="2">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="189" R="188" B="34" name="/estimator_debug/filters.2/width" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="1" style="Lines" col="2">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="201" R="26" B="56" name="/estimator_debug/filters.5/width" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="2" style="Lines" col="2">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="103" R="148" B="189" name="/estimator_debug/filters.8/width" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="3" style="Lines" col="2">
+    <range bottom="0.000000" left="0.000000" top="1.000000" right="1.000000"/>
+    <limitY/>
+    <transform value="noTransform"/>
+   </plot>
+  </plotmatrix>
+  <plotmatrix columns="3" tab_name="plot" rows="4">
+   <plot row="0" style="Lines" col="0">
+    <range bottom="-1.028008" left="1661806986.105894" top="0.184962" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="189" R="188" B="34" name="/estimator_debug/filters.0/velocity/linear/x" custom_transform="noTransform"/>
+    <curve G="39" R="214" B="40" name="/estimator_debug/filters.0/velocity/linear/y" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="1" style="Lines" col="0">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="201" R="26" B="56" name="/estimator_debug/filters.3/velocity/linear/x" custom_transform="noTransform"/>
+    <curve G="76" R="241" B="193" name="/estimator_debug/filters.3/velocity/linear/y" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="2" style="Lines" col="0">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="103" R="148" B="189" name="/estimator_debug/filters.6/velocity/linear/x" custom_transform="noTransform"/>
+    <curve G="189" R="188" B="34" name="/estimator_debug/filters.6/velocity/linear/y" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="3" style="Lines" col="0">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="119" R="31" B="180" name="/estimator_debug/filters.9/velocity/linear/x" custom_transform="noTransform"/>
+    <curve G="201" R="26" B="56" name="/estimator_debug/filters.9/velocity/linear/y" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="0" style="Lines" col="1">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="119" R="31" B="180" name="/estimator_debug/filters.1/velocity/linear/x" custom_transform="noTransform"/>
+    <curve G="201" R="26" B="56" name="/estimator_debug/filters.1/velocity/linear/y" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="1" style="Lines" col="1">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="127" R="255" B="14" name="/estimator_debug/filters.4/velocity/linear/x" custom_transform="noTransform"/>
+    <curve G="103" R="148" B="189" name="/estimator_debug/filters.4/velocity/linear/y" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="2" style="Lines" col="1">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="190" R="23" B="207" name="/estimator_debug/filters.7/velocity/linear/x" custom_transform="noTransform"/>
+    <curve G="119" R="31" B="180" name="/estimator_debug/filters.7/velocity/linear/y" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="3" style="Lines" col="1">
+    <range bottom="0.000000" left="0.000000" top="1.000000" right="1.000000"/>
+    <limitY/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="0" style="Lines" col="2">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="39" R="214" B="40" name="/estimator_debug/filters.2/velocity/linear/x" custom_transform="noTransform"/>
+    <curve G="127" R="255" B="14" name="/estimator_debug/filters.2/velocity/linear/y" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="1" style="Lines" col="2">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="76" R="241" B="193" name="/estimator_debug/filters.5/velocity/linear/x" custom_transform="noTransform"/>
+    <curve G="190" R="23" B="207" name="/estimator_debug/filters.5/velocity/linear/y" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="2" style="Lines" col="2">
+    <range bottom="-0.100000" left="1661806986.105894" top="0.100000" right="1661807001.085888"/>
+    <limitY/>
+    <curve G="189" R="188" B="34" name="/estimator_debug/filters.8/velocity/linear/x" custom_transform="noTransform"/>
+    <curve G="39" R="214" B="40" name="/estimator_debug/filters.8/velocity/linear/y" custom_transform="noTransform"/>
+    <transform value="noTransform"/>
+   </plot>
+   <plot row="3" style="Lines" col="2">
+    <range bottom="0.000000" left="0.000000" top="1.000000" right="1.000000"/>
+    <limitY/>
+    <transform value="noTransform"/>
+   </plot>
+  </plotmatrix>
+  <plotmatrix columns="1" tab_name="plot" rows="1">
+   <plot row="0" style="LinesAndDots" col="0">
+    <range bottom="-10.926716" left="-6.605470" top="2.315286" right="12.291479"/>
+    <limitY/>
+    <curve G="103" R="148" curve_y="/estimator_debug/filters.0/posy" B="189" curve_x="/estimator_debug/filters.0/posx" name="/estimator_debug/filters.0/pos[x;y]" custom_transform="XYPlot"/>
+    <curve G="190" R="23" curve_y="/estimator_debug/filters.1/posy" B="207" curve_x="/estimator_debug/filters.1/posx" name="/estimator_debug/filters.1/pos[x;y]" custom_transform="XYPlot"/>
+    <curve G="189" R="188" curve_y="/estimator_debug/filters.2/posy" B="34" curve_x="/estimator_debug/filters.2/posx" name="/estimator_debug/filters.2/pos[x;y]" custom_transform="XYPlot"/>
+    <curve G="119" R="31" curve_y="/estimator_debug/filters.3/posy" B="180" curve_x="/estimator_debug/filters.3/posx" name="/estimator_debug/filters.3/pos[x;y]" custom_transform="XYPlot"/>
+    <curve G="39" R="214" curve_y="/estimator_debug/filters.4/posy" B="40" curve_x="/estimator_debug/filters.4/posx" name="/estimator_debug/filters.4/pos[x;y]" custom_transform="XYPlot"/>
+    <curve G="201" R="26" curve_y="/estimator_debug/filters.5/posy" B="56" curve_x="/estimator_debug/filters.5/posx" name="/estimator_debug/filters.5/pos[x;y]" custom_transform="XYPlot"/>
+    <curve G="127" R="255" curve_y="/estimator_debug/filters.6/posy" B="14" curve_x="/estimator_debug/filters.6/posx" name="/estimator_debug/filters.6/pos[x;y]" custom_transform="XYPlot"/>
+    <curve G="76" R="241" curve_y="/estimator_debug/filters.7/posy" B="193" curve_x="/estimator_debug/filters.7/posx" name="/estimator_debug/filters.7/pos[x;y]" custom_transform="XYPlot"/>
+    <curve G="103" R="148" curve_y="/estimator_debug/filters.8/posy" B="189" curve_x="/estimator_debug/filters.8/posx" name="/estimator_debug/filters.8/pos[x;y]" custom_transform="XYPlot"/>
+    <curve G="190" R="23" curve_y="/estimator_debug/filters.9/posy" B="207" curve_x="/estimator_debug/filters.9/posx" name="/estimator_debug/filters.9/pos[x;y]" custom_transform="XYPlot"/>
+    <transform value="XYPlot"/>
+   </plot>
+  </plotmatrix>
+  <currentPlotMatrix index="3"/>
+ </tabbed_widget>
+ <use_relative_time_offset enabled="0"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <!-- - - - - - - - - - - - - - - -->
+ <Plugins>
+  <plugin ID="DataLoad CSV">
+   <default time_axis=""/>
+  </plugin>
+  <plugin ID="DataLoad ROS bags">
+   <use_header_stamp value="true"/>
+   <use_renaming_rules value="true"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="1000"/>
+  </plugin>
+  <plugin ID="DataLoad ULog"/>
+  <plugin ID="ROS Topic Subscriber">
+   <use_header_stamp value="true"/>
+   <use_renaming_rules value="true"/>
+   <discard_large_arrays value="false"/>
+   <max_array_size value="5000"/>
+  </plugin>
+  <plugin ID="ROS /rosout Visualization" status="idle"/>
+  <plugin ID="ROS Topic Re-Publisher" status="idle"/>
+ </Plugins>
+ <!-- - - - - - - - - - - - - - - -->
+ <previouslyLoaded_Datafiles>
+  <fileInfo prefix="" filename="/home/ulas/hobby_ws/debug.bag">
+   <selected_datasources value="/estimator_debug"/>
+   <plugin ID="DataLoad ROS bags">
+    <use_header_stamp value="true"/>
+    <use_renaming_rules value="true"/>
+    <discard_large_arrays value="true"/>
+    <max_array_size value="1000"/>
+   </plugin>
+  </fileInfo>
+  <fileInfo prefix="" filename="/home/ulas/hobby_ws/debug_.bag">
+   <selected_datasources value="/estimator_debug"/>
+   <plugin ID="DataLoad ROS bags">
+    <use_header_stamp value="true"/>
+    <use_renaming_rules value="true"/>
+    <discard_large_arrays value="true"/>
+    <max_array_size value="1000"/>
+   </plugin>
+  </fileInfo>
+ </previouslyLoaded_Datafiles>
+ <!-- - - - - - - - - - - - - - - -->
+ <customMathEquations/>
+ <snippets>
+  <snippet name="1D_kalman" language="JS">
+   <global>var prev_mean = 0
+var prev_cov = 0.1
+// Xk = A*Xk-1 + Ut
+// Zk = Ct*Xk + St
+var R = 0.05 // Prediction cov
+var Q = 0.01 // Measurement cov
+var A = 1.0  
+var C = 1.0
+var is_first = 1</global>
+   <equation>V1 = $$/r300081644/dock_debug/ref_pose/position/x$$
+
+if(is_first == 1)
+{
+  is_first = 0
+  prev_mean = V1
+  return prev_mean
+}
+
+mean_p = A * prev_mean
+cov_p = A*prev_cov*A + R
+kgain = cov_p * C /(C*cov_p*C + Q)
+information = (V1-C*cov_p)
+prev_mean = mean_p + kgain*information;
+prev_cov = (1-kgain*C)*cov_p;
+return prev_mean</equation>
+  </snippet>
+  <snippet name="1D_kalman_COV" language="JS">
+   <global>var prev_mean = 0
+var prev_cov = 0.1
+// Xk = A*Xk-1 + Ut
+// Zk = Ct*Xk + St
+var R = 0.05 // Prediction cov
+var Q = 0.05 // Measurement cov
+var A = 1.0  
+var C = 1.0
+var is_first = 1</global>
+   <equation>V1 = $$/r300081644/dock_debug/rejection$$
+
+
+
+if(is_first == 1)
+{
+  is_first = 0
+  prev_mean = V1
+  return prev_cov
+}
+
+mean_p = A * prev_mean
+cov_p = A*prev_cov*A + R
+kgain = cov_p * C /(C*cov_p*C + Q)
+information = (V1-C*mean_p)
+prev_mean = mean_p + kgain*information;
+prev_cov = (1-kgain*C)*cov_p;
+return prev_cov</equation>
+  </snippet>
+  <snippet name="1st_derivative" language="JS">
+   <global>var prevX = 0
+var prevY = 0</global>
+   <equation>dx = time - prevX
+dy = value - prevY
+prevX = time
+prevY = value
+
+return dy/dx</equation>
+  </snippet>
+  <snippet name="1st_order_lowpass" language="JS">
+   <global>var prevY = 0
+var alpha = 0.1</global>
+   <equation>prevY = alpha * value + (1.-alpha) * prevY
+
+return prevY</equation>
+  </snippet>
+  <snippet name="2D_velocity" language="JS">
+   <global>var prev_x = 0
+var prev_y = 0
+var prev_t = 0</global>
+   <equation>X = $$your_odometry/position/x$$
+Y = $$your_odometry/position/y$$
+
+var dist = sqrt( (X-prev_x)*(X-prev_x) + (Y-prev_y)*(Y-prev_y) )
+var dT = time - prev_t
+
+prev_x = X
+prev_y = Y
+prev_t = time
+
+return dist / dT</equation>
+  </snippet>
+  <snippet name="LEFT" language="JS">
+   <global>function quaternionToYaw(x, y, z, w)
+{
+  // yaw (z-axis rotation)
+  t1 = 2.0 * (w * z + x * y);
+  t2 = 1.0 - 2.0 * (y * y + z * z);
+  yaw = Math.atan2(t1, t2);
+
+  return yaw
+}</global>
+   <equation>V1 = $$/r200331549/information/monitor/motor_status.0/m1_feedback/motor_feedback$$
+
+return V1 / 4.2 ;</equation>
+  </snippet>
+  <snippet name="Roll" language="JS">
+   <global>function quaternionToRoll(x, y, z, w)
+{
+   roll = Math.atan2(2.0*(x*y + w*z), w*w + x*x - y*y - z*z);
+  return roll
+}</global>
+   <equation>V1 = $$field.pose.pose.orientation.x$$
+
+V2 = $$field.pose.pose.orientation.y$$
+
+V3 = $$field.pose.pose.orientation.z$$
+
+V4 = $$field.pose.pose.orientation.w$$
+
+
+return quaternionToRoll(V1, V2, V3, V4) *180/3.1417 ;</equation>
+  </snippet>
+  <snippet name="average_two_curves" language="JS">
+   <global></global>
+   <equation>a = $$PLOT_A$$
+b = $$PLOT_B$$
+
+return (a+b)/2</equation>
+  </snippet>
+  <snippet name="getRefRobotAngleDiff" language="JS">
+   <global>function getAngleDiff(x,refx)
+{
+  // Transforms tx, ty to odom frame
+  
+  diff = Math.sqrt((x-refx)*(x-refx));  
+
+  return diff
+}
+
+function quaternionToYaw(x, y, z, w)
+{
+  // yaw (z-axis rotation)
+  t1 = 2.0 * (w * z + x * y);
+  t2 = 1.0 - 2.0 * (y * y + z * z);
+  yaw = Math.atan2(t1, t2);
+
+  return yaw
+}</global>
+   <equation>V1 = $$B/r2002313a3/dock_debug/ref_pose/orientation/x$$
+
+V2 = $$B/r2002313a3/dock_debug/ref_pose/orientation/y$$
+
+V3 = $$B/r2002313a3/dock_debug/ref_pose/orientation/z$$
+
+V4 = $$B/r2002313a3/dock_debug/ref_pose/orientation/w$$
+
+V5 = $$B/r2002313a3/dock_debug/robot_pose/orientation/x$$
+
+V6 = $$B/r2002313a3/dock_debug/robot_pose/orientation/y$$
+
+V7 = $$B/r2002313a3/dock_debug/robot_pose/orientation/z$$
+
+V8 = $$B/r2002313a3/dock_debug/robot_pose/orientation/w$$
+
+robot_yaw = quaternionToYaw(V5,V6,V7,V8) * 180 / 3.1416;
+ref_yaw =  quaternionToYaw(V1,V2,V3,V4) * 180 / 3.1416;
+return getAngleDiff(robot_yaw,ref_yaw);</equation>
+  </snippet>
+  <snippet name="getRefRobotDiff" language="JS">
+   <global>function getDiff(x, y, refx, refy)
+{
+  // Transforms tx, ty to odom frame
+  
+  diff = Math.sqrt((x-refx)*(x-refx) + (y-refy)*(y-refy));  
+
+  return diff
+}
+
+function quaternionToYaw(x, y, z, w)
+{
+  // yaw (z-axis rotation)
+  t1 = 2.0 * (w * z + x * y);
+  t2 = 1.0 - 2.0 * (y * y + z * z);
+  yaw = Math.atan2(t1, t2);
+
+  return yaw
+}</global>
+   <equation>robot_x = $$C/r2002313a3/dock_debug/robot_pose/position/x$$
+
+robot_y =  $$C/r2002313a3/dock_debug/robot_pose/position/y$$
+
+ref_x = $$C/r2002313a3/dock_debug/ref_pose/position/x$$
+
+ref_y = $$C/r2002313a3/dock_debug/ref_pose/position/y$$
+
+return getDiff(robot_x, robot_y, ref_x, ref_y);</equation>
+  </snippet>
+  <snippet name="getTargetY" language="JS">
+   <global>function getTargetY(x, y, th, tx, ty)
+{
+  // Transforms tx, ty to odom frame
+  
+  target_world_y = y + Math.sin(th) * tx + Math.cos(th)*ty;  
+
+  return target_world_y
+}
+
+function quaternionToYaw(x, y, z, w)
+{
+  // yaw (z-axis rotation)
+  t1 = 2.0 * (w * z + x * y);
+  t2 = 1.0 - 2.0 * (y * y + z * z);
+  yaw = Math.atan2(t1, t2);
+
+  return yaw
+}</global>
+   <equation>V1 = $$B/r2002313a3/dock_debug/robot_pose/orientation/x$$
+
+V2 = $$B/r2002313a3/dock_debug/robot_pose/orientation/y$$
+
+V3 = $$B/r2002313a3/dock_debug/robot_pose/orientation/z$$
+
+V4 = $$B/r2002313a3/dock_debug/robot_pose/orientation/w$$
+
+robot_x = $$B/r2002313a3/dock_debug/robot_pose/position/x$$
+
+robot_y =  $$B/r2002313a3/dock_debug/robot_pose/position/y$$
+
+robot_yaw = quaternionToYaw(V1,V2,V3,V4)
+
+
+tx = $$B/r2002313a3/dock_debug/target_pose/position/x$$
+
+ty = $$B/r2002313a3/dock_debug/target_pose/position/y$$
+
+return getTargetY(robot_x, robot_y, robot_yaw, tx, ty);</equation>
+  </snippet>
+  <snippet name="getYaw" language="JS">
+   <global>function quaternionToYaw(x, y, z, w)
+{
+  // yaw (z-axis rotation)
+  t1 = 2.0 * (w * z + x * y);
+  t2 = 1.0 - 2.0 * (y * y + z * z);
+  yaw = Math.atan2(t1, t2);
+
+  return yaw
+}</global>
+   <equation>V1 = $$A/field.pose.orientation.x$$
+
+V2 = $$A/field.pose.orientation.y$$
+
+V3 = $$A/field.pose.orientation.z$$
+
+V4 = $$A/field.pose.orientation.w$$
+
+return quaternionToYaw(V1, V2, V3, V4);</equation>
+  </snippet>
+  <snippet name="getyaw4" language="JS">
+   <global>function quaternionToYaw(x, y, z, w)
+{
+  // yaw (z-axis rotation)
+  t1 = 2.0 * (w * z + x * y);
+  t2 = 1.0 - 2.0 * (y * y + z * z);
+  yaw = Math.atan2(t1, t2);
+
+  return yaw
+}</global>
+   <equation>V1 = $$field.pose.orientation.x$$
+
+V2 = $$field.pose.orientation.y$$
+
+V3 = $$field.pose.orientation.z$$
+
+V4 = $$field.pose.orientation.w$$
+
+
+return quaternionToYaw(V1, V2, V3, V4) *180/3.1417 ;</equation>
+  </snippet>
+  <snippet name="integral" language="JS">
+   <global>var integral = 0</global>
+   <equation>integral += value
+return integral</equation>
+  </snippet>
+  <snippet name="offsetX" language="JS">
+   <global>var is_first = true
+var first_value = 0
+var x_offset = 0
+var y_offset = 0
+var th0 = 0</global>
+   <equation>th = $$/r2004915a3/dock_pose_estimate_filtered/pose/orientation/yaw_deg$$*3.1412/180
+x =  $$/r2004915a3/dock_pose_estimate_filtered/pose/position/x$$
+y =  $$/r2004915a3/dock_pose_estimate_filtered/pose/position/y$$
+
+if (is_first)
+{
+  is_first = false
+  first_value = value
+  th0 = th
+  x_offset = x
+  y_offset = y
+}
+
+delx = x-x_offset
+dely = y-y_offset
+
+x_out = cos(th0)*delx + sin(th0)*dely
+
+return x_out</equation>
+  </snippet>
+  <snippet name="offsetY" language="JS">
+   <global>var is_first = true
+var first_value = 0
+var x_offset = 0
+var y_offset = 0
+var th0 = 0</global>
+   <equation>th = $$/r2004915a3/dock_pose_estimate_filtered/pose/orientation/yaw_deg$$*3.1412/180
+x =  $$/r2004915a3/dock_pose_estimate_filtered/pose/position/x$$
+y =  $$/r2004915a3/dock_pose_estimate_filtered/pose/position/y$$
+
+if (is_first)
+{
+  is_first = false
+  first_value = value
+  th0 = th
+  x_offset = x
+  y_offset = y
+}
+
+delx = x-x_offset
+dely = y-y_offset
+
+y_out = -sin(th0)*delx + cos(th0)*dely
+
+return y_out</equation>
+  </snippet>
+  <snippet name="pitch" language="JS">
+   <global>function quaternionToPitch(x, y, z, w)
+{
+  // yaw (z-axis rotation)
+   pitch = Math.asin(-2.0*(x*z - w*y));
+  return pitch
+}</global>
+   <equation>return quaternionToPitch(V1, V2, V3, V4) *180/3.1417 ;</equation>
+  </snippet>
+  <snippet name="rad_to_deg" language="JS">
+   <global></global>
+   <equation>return value*180/3.1417</equation>
+  </snippet>
+  <snippet name="remove_offset" language="JS">
+   <global>var is_first = true
+var first_value = 0</global>
+   <equation>if (is_first)
+{
+  is_first = false
+  first_value = value
+}
+
+return value - first_value</equation>
+  </snippet>
+  <snippet name="roll" language="JS">
+   <global>function quaternionToRoll(x, y, z, w)
+{
+   roll = atan2(2.0*(x*y + w*z), w*w + x*x - y*y - z*z);
+  return roll
+}</global>
+   <equation>V1 = $$field.pose.pose.orientation.x$$
+
+V2 = $$field.pose.pose.orientation.y$$
+
+V3 = $$field.pose.pose.orientation.z$$
+
+V4 = $$field.pose.pose.orientation.w$$
+
+
+return quaternionToRoll(V1, V2, V3, V4) *180/3.1417 ;</equation>
+  </snippet>
+  <snippet name="stack_pitch" language="JS">
+   <global>function quaternionToPitch(x, y, z, w)
+{
+   roll = Math.asin(2.0 * (y * w - z * x));
+  return roll
+}</global>
+   <equation>V1 = $$B/field.pose.pose.orientation.x$$
+
+V2 = $$B/field.pose.pose.orientation.y$$
+
+V3 = $$B/field.pose.pose.orientation.z$$
+
+V4 = $$B/field.pose.pose.orientation.w$$
+
+
+return quaternionToPitch(V1, V2, V3, V4) *180/3.1417 ;</equation>
+  </snippet>
+  <snippet name="stack_roll" language="JS">
+   <global>function quaternionToRoll(x, y, z, w)
+{
+   roll = Math.atan2(2.0 * (z * y + w * x) , 1.0 - 2.0 * (x * x + y * y));
+  return roll
+}</global>
+   <equation>V1 = $$B/field.pose.pose.orientation.x$$
+
+V2 = $$B/field.pose.pose.orientation.y$$
+
+V3 = $$B/field.pose.pose.orientation.z$$
+
+V4 = $$B/field.pose.pose.orientation.w$$
+
+
+return quaternionToRoll(V1, V2, V3, V4) *180/3.1417 ;</equation>
+  </snippet>
+  <snippet name="stack_yaw" language="JS">
+   <global>function quaternionToYaw(x, y, z, w)
+{
+   roll = Math.atan2(2.0 * (z * w + x * y) , - 1.0 + 2.0 * (w * w + x * x));
+  return roll
+}</global>
+   <equation>V1 = $$B/field.pose.pose.orientation.x$$
+
+V2 = $$B/field.pose.pose.orientation.y$$
+
+V3 = $$B/field.pose.pose.orientation.z$$
+
+V4 = $$B/field.pose.pose.orientation.w$$
+
+
+return quaternionToYaw(V1, V2, V3, V4) *180/3.1417 ;</equation>
+  </snippet>
+  <snippet name="sum4nums" language="JS">
+   <global>function abcd(x, y, z, w)
+{
+   roll = x + y + z + w
+  return roll
+}</global>
+   <equation>V1 = $$field.pose.pose.orientation.x$$
+
+V2 = $$field.pose.pose.orientation.y$$
+
+V3 = $$field.pose.pose.orientation.z$$
+
+V4 = $$field.pose.pose.orientation.w$$
+
+
+return abcd(V1, V2, V3, V4) *180/3.1417 ;</equation>
+  </snippet>
+  <snippet name="targetX" language="JS">
+   <global>function getTargetXX(x, y, th, tx, ty)
+{
+  // Transforms tx, ty to odom frame
+  
+  target_world_x = x + Math.cos(th) * tx - Math.sin(th)*ty;  
+
+  return target_world_x
+}
+
+function quaternionToYaw(x, y, z, w)
+{
+  // yaw (z-axis rotation)
+  t1 = 2.0 * (w * z + x * y);
+  t2 = 1.0 - 2.0 * (y * y + z * z);
+  yaw = Math.atan2(t1, t2);
+
+  return yaw
+}</global>
+   <equation>V1 = $$/r200171362/dock_debug/robot_pose/orientation/x$$
+
+V2 = $$/r200171362/dock_debug/robot_pose/orientation/y$$
+
+V3 = $$/r200171362/dock_debug/robot_pose/orientation/z$$
+
+V4 = $$/r200171362/dock_debug/robot_pose/orientation/w$$
+
+
+
+rx = $$/r200171362/dock_debug/robot_pose/position/x$$
+
+ry = $$/r200171362/dock_debug/robot_pose/position/y$$
+
+
+robot_yaw = quaternionToYaw(V1,V2,V3,V4)
+
+
+
+tx = $$/r200171362/dock_debug/target_pose/position/x$$
+
+
+
+ty = $$/r200171362/dock_debug/target_pose/position/y$$
+
+
+return getTargetXX(rx, ry, robot_yaw, tx, ty);</equation>
+  </snippet>
+  <snippet name="wikiRoll" language="JS">
+   <global>function quaternionToRoll(x, y, z, w)
+{
+   roll = Math.atan2(2.0 * (w*x + y*z) , 1.0 - 2.0 * (x * x + y * y));
+  return roll
+}</global>
+   <equation>V1 = $$field.pose.pose.orientation.x$$
+
+V2 = $$field.pose.pose.orientation.y$$
+
+V3 = $$field.pose.pose.orientation.z$$
+
+V4 = $$field.pose.pose.orientation.w$$
+
+
+return quaternionToRoll(V1, V2, V3, V4) *180/3.1417 ;</equation>
+  </snippet>
+  <snippet name="yaw_from_quaternion" language="JS">
+   <global>// source: https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+
+function quaternionToYaw(x, y, z, w)
+{
+  // yaw (z-axis rotation)
+  t1 = 2.0 * (w * z + x * y);
+  t2 = 1.0 - 2.0 * (y * y + z * z);
+  yaw = Math.atan2(t1, t2);
+
+  return yaw
+}</global>
+   <equation>return quaternionToYaw(x, y, z, w);</equation>
+  </snippet>
+ </snippets>
+ <!-- - - - - - - - - - - - - - - -->
+</root>
+
