@@ -1,5 +1,5 @@
 std_msgs/Header header
-int8 n_filter_active
-int8 n_filter_deleted
-int8 n_filter_recreated
+uint64 n_filter_active
+uint64 n_filter_deleted
+uint64 n_filter_recreated
 radar_estimator/Filter[] filters
