@@ -50,7 +50,7 @@ namespace kalman_filter
     msg_.posx = mean_[0];
     msg_.posy = mean_[1];
     msg_.velocity.linear.x = mean_[2];
-    msg_.velocity.linear.x = mean_[3]; 
+    msg_.velocity.linear.y = mean_[3]; 
     msg_.width = mean_[4];
     msg_.height = mean_[5];
     msg_.depth = mean_[6];
