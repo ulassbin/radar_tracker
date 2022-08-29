@@ -7,6 +7,7 @@ namespace estimator
   	ros::NodeHandle nh;
   	got_msg_ = false;
   	sub_msgs_ =  nh.subscribe("/lrrObjects", 10, &estimator::messageCallback, this);
+    pub_debug_ = nh.advertise<radar_estimator::EstimatorDebug>("estimator_debug", 10, false);
     //timer_ = private_nh_.createTimer(ros::Duration(0.1), std::bind(&estimator::timerCallback, this, _1));
     for(int i = 0; i<10; i++)
       trackers_.push_back(kalman_filter::kalmanFilter(i));
@@ -98,6 +99,19 @@ namespace estimator
     return (match_prob>b0); //
   }
 
+  void estimator::broadcastDebugMsg()
+  {
+    debug_.header.stamp = ros::Time::now();
+    debug_.header.frame_id = "sensor";
+    debug_.n_filter_active = trackers_.size();
+    //debug_.n_filter_deleted ...
+    //debug_.n_filter_recreated ...
+    debug_.filters.clear();
+    for(auto filt : trackers_)
+      debug_.filters.push_back(filt.msg_);
+    pub_debug_.publish(debug_);
+  }
+
   void estimator::messageCallback(const std_msgs::Float32MultiArray msg)
   {
     bool valid(false);
@@ -116,6 +130,7 @@ namespace estimator
         trackers_[i].first_ = false;
         uviz_.visFilterStates(trackers_[i].mean_, trackers_[i].cov_, std::to_string(i));
       }
+      broadcastDebugMsg(); // Broadcast after visualization
       return;
     }
 
@@ -126,6 +141,7 @@ namespace estimator
       trackers_[i].prediction();
       uviz_.visFilterStates(trackers_[i].mean_, trackers_[i].cov_, std::to_string(i));
     }
+    broadcastDebugMsg(); // Broadcast after predictions.
     for(int i = 0; i < matches.size(); i++)
     {
       ROS_INFO("Track %d has %d matches", i, matches[i].size());
@@ -149,6 +165,7 @@ namespace estimator
       }
       uviz_.visFilterStates(trackers_[i].mean_, trackers_[i].cov_, std::to_string(i));
     }
+    broadcastDebugMsg(); // broadcast after update cycle
   	got_msg_ = true;
   }
 

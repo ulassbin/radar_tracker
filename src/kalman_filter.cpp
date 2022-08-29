@@ -40,6 +40,20 @@ namespace kalman_filter
   	mean_ = common::toEigen(meas);
     cov_p_ = cov_;
     mean_p_ = mean_;
+    msg_.init_flag = radar_estimator::Filter::INIT_FLAG_ASSIGN; // Initially constructed filter
+    updateMsg();
+  }
+
+  void kalmanFilter::updateMsg()
+  {
+    msg_.id = this->id_;
+    msg_.posx = mean_[0];
+    msg_.posy = mean_[1];
+    msg_.velocity.linear.x = mean_[2];
+    msg_.velocity.linear.x = mean_[3]; 
+    msg_.width = mean_[4];
+    msg_.height = mean_[5];
+    msg_.depth = mean_[6];
   }
   
   void kalmanFilter::iterate(measurement meas)
@@ -75,6 +89,9 @@ namespace kalman_filter
   	cov_p_ = At*cov_*At.transpose() + Rt;
     mean_ = mean_p_;
     cov_ = cov_p_;
+
+    msg_.prediction_count += 1;
+    updateMsg();
   }
 
   void kalmanFilter::pdaUpdate(std::vector<std::pair<int,double>> match_vect, std::vector<measurement> measurements, double PD, double norm)
@@ -123,6 +140,9 @@ namespace kalman_filter
     //cov_ = cov_p_ - (1-b0)*Kgain*Sk*Kgain.transpose() + Pk;
     cov_ = b0*cov_p_ + (1-b0)* (Eigen::MatrixXd::Identity(7,7) -Kgain*Ct)*cov_p_;// + (1-b0)*Pk;
     mean_ += Kgain*weighted_inv;
+
+    msg_.update_count += 1;
+    updateMsg();
   }
 
 
@@ -141,6 +161,8 @@ namespace kalman_filter
 
   	mean_ = mean_p_ + Kgain*(measurement - Ct*mean_p_);
   	cov_ = (Eigen::MatrixXd::Identity(7,7) - Kgain*Ct)*cov_p_;
+    msg_.update_count += 1;
+    updateMsg();
   }
 
 };

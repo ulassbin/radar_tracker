@@ -10,6 +10,8 @@
 #include <radar_estimator/common.h>
 #include <radar_estimator/visualizer.h>
 #include <radar_estimator/kalman_filter.h>
+#include <radar_estimator/Filter.h>
+#include <radar_estimator/EstimatorDebug.h>
 
 namespace estimator
 {
@@ -65,7 +67,13 @@ class estimator
      * key:tracker_id, value: 1st: measurement index, 2nd: gaussian value obtained with innovation.
      */
     std::map<int, std::vector<std::pair<int, double>>> getMatchesInGate(double PD);
+
+    /**
+     * @details Broadcasts the debug msg formed by filter states.
+     */
+    void broadcastDebugMsg();
     ros::Subscriber sub_msgs_;
+    ros::Publisher pub_debug_;
     ros::Timer timer_;
     ros::NodeHandle private_nh_;
 
@@ -74,6 +82,8 @@ class estimator
     visualizer::visualizer uviz_;
     std::vector<kalman_filter::kalmanFilter> trackers_;
     std::vector<measurement> measurements_;
+    radar_estimator::EstimatorDebug debug_;
+
 };
 };
 

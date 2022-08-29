@@ -5,7 +5,7 @@
 #include <Eigen/Core>
 #include <Eigen/Dense>
 #include <radar_estimator/common.h>
-
+#include <radar_estimator/Filter.h>
 
 namespace kalman_filter
 {
@@ -76,12 +76,19 @@ class kalmanFilter
   Eigen::MatrixXd cov_p_;//(7,7);
   Eigen::VectorXd mean_p_;//(7);
   bool first_ = true;
+  radar_estimator::Filter msg_;
+
   private:
   /**
    * @brief Standard KF measurement update
    * @param measurement is the measurement raw values in Eigen Vect format
    */
   void measurementUpdate(Eigen::VectorXd measurement);
+  
+  /**
+   * @brief Updates msg to currrent state
+   */
+  void updateMsg();
   int id_;
   std::string state_;
   std::vector<double> process_noise_;
