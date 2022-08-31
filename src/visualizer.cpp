@@ -8,6 +8,46 @@ namespace visualizer
     pub_ = nh.advertise<visualization_msgs::Marker>("/sensor_visualization", 10, false);
   }
 
+  void visualizer::visualizeGateVectors(double trackx, double tracky, double measx, double measy, double track_id)
+  {
+  	visualization_msgs::Marker marker;
+    marker.ns = "gatemap";
+  	int count = 0;
+  	marker.pose.orientation.x = 0;
+  	marker.pose.orientation.y = 0;
+  	marker.pose.orientation.z = 0;
+  	marker.pose.orientation.w = 1;
+  	marker.pose.position.z = 0;
+  	marker.color.r = 0;
+  	marker.color.g = 1.0;
+  	marker.color.b = 1.0;
+  	marker.color.a = 1.0;
+  	marker.header.frame_id = "sensor";
+  	marker.header.stamp = ros::Time::now();
+    marker.type = 4; // Line strip
+    
+    //marker.action = 2; // Clear here
+    //pub_.publish(marker);
+    marker.pose.orientation.w = 1.0;
+    marker.action = 0;
+	  marker.id = track_id;
+	  marker.scale.x = 0.1;
+	  marker.scale.y = 0.1;
+	  marker.scale.z = 0.1;
+	  geometry_msgs::Point point;
+	  point.x = trackx;
+	  point.y = tracky;
+	  point.z = 0;
+
+	  marker.points.push_back(point);
+	  point.x = measx;
+	  point.y = measy;
+	  marker.points.push_back(point);
+
+	  pub_.publish(marker);
+	}
+  
+
   void visualizer::visualize2DGates(double x, double y, Eigen::MatrixXd sk_inv, double tol, int id)
   {
   	// Gate: inv*Sk^-1*inv <= tolerance
@@ -15,7 +55,6 @@ namespace visualizer
   	// ax^2 = tol || dy^2 = tol
 
   	visualization_msgs::Marker marker;
-  	int count = 0;
   	marker.pose.orientation.x = 0;
   	marker.pose.orientation.y = 0;
   	marker.pose.orientation.z = 0;
@@ -24,18 +63,18 @@ namespace visualizer
   	marker.color.r = 0;
   	marker.color.g = 0.0;
   	marker.color.b = 1.0;
-  	marker.color.a = 1.0;
+  	marker.color.a = 0.4;
   	marker.header.frame_id = "sensor";
   	marker.header.stamp = ros::Time::now();
     marker.action = 0;
     marker.type = 2; // cyclinder
 
-	  marker.ns = std::string("gate_")+ std::to_string(id);
-	  marker.id = count;
+	  marker.ns = "gates";
+	  marker.id = id;
     marker.pose.position.x = x;
     marker.pose.position.y = y;
-    marker.scale.x = sqrt(tol/sk_inv(0,0));
-    marker.scale.y = sqrt(tol/sk_inv(1,1));
+    marker.scale.x =  2 * sqrt(tol*tol/sk_inv(0,0));
+    marker.scale.y = 2 * sqrt(tol*tol/sk_inv(1,1));
     marker.scale.z = 0.1;
 	  pub_.publish(marker);
   }

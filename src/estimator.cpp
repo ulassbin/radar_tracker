@@ -67,7 +67,8 @@ namespace estimator
         if(sqrt(pos_dist) < gate_eps) //
         {
           double gauss_val = exp(-pos_dist/2.0);//Just using 2d values here...
-          gated_measurements.push_back(std::make_pair(j, gauss_val)); 
+          gated_measurements.push_back(std::make_pair(j, gauss_val));
+          uviz_.visualizeGateVectors(track.mean_p_(0), track.mean_p_(1), measurements_[j].x_, measurements_[j].y_, i);
         }
         // bj = exp(dist_sq);
       }

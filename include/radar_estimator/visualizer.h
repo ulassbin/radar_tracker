@@ -52,6 +52,7 @@ class visualizer
      * fed to the filters as measurement.
      */
     void visualize2DGates(double x, double y, Eigen::MatrixXd sk_inv, double tol, int id);
+    void visualizeGateVectors(double trackx, double tracky, double measx, double measy, double track_id);
   private:
     ros::Publisher pub_;
 };
