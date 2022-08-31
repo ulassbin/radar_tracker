@@ -54,16 +54,15 @@ namespace estimator
     {
       gated_measurements.clear();
       kalman_filter::kalmanFilter track = trackers_[i]; // Getting a copy of tracker object
-      track.prediction(); // Just updating the copy, not the element itself...
       sk_inv2 =  track.cov_p_.block<2,2>(1,1).inverse();
       uviz_.visualize2DGates(track.mean_p_(0), track.mean_p_(1), sk_inv2, gate_eps, i);
-      for(int j = 0 ; j < measurements_.size(); j++)
+      for(int j = 0; j < measurements_.size(); j++)
       {
         meas_eig = common::toEigen(measurements_[j]);
         innovation = meas_eig - track.mean_p_;
         //dist_sq = innovation.transpose() * track.cov_p_.inverse() * innovation; // Covariance scales down the dimensions
         // We can compute and visualize 2d elipsoids here. 
-        pos_dist = (innovation.head(2).transpose() * sk_inv2 *innovation.head(2));
+        pos_dist = (innovation.head(2).transpose() * sk_inv2 * innovation.head(2));
         ROS_INFO("Tracker %d , meas %i, pose_dist %.2f",i,j,sqrt(pos_dist));
         if(sqrt(pos_dist) < gate_eps) //
         {
@@ -139,25 +138,26 @@ namespace estimator
     {
       // We have new objects
       // Get the gated objects, assign the other ones.
-
+      for(int i = 0; i < trackers_.size(); i++)
+      {
+        trackers_[i].prediction();
+      }
+      visAllFilters();
       matches = getMatchesInGate(PD);
+      
       std::vector<int> assigned_matches;
+      ROS_INFO("MEAS size %d", measurements_.size());
       for(auto match : matches)
       { // Match is std::pair<int, vector<pair<match_id, gauss_val>>;
         for(std::pair<int,double> match_item : match.second) // NO match index
         {
           if(match_item.first == -1)
             continue;
-          assigned_matches.push_back(match.first);
-          ROS_INFO("Gated %d at position %.2f %.2f", match_item.first, measurements_[match_item.first].x_, measurements_[match_item.first].y_);
+          assigned_matches.push_back(match_item.first);
+          ROS_INFO("Track %d Gated %d at position %.2f %.2f", match.first, match_item.first, measurements_[match_item.first].x_, measurements_[match_item.first].y_);
         }
       }
       // Update assigned filters
-      for(int i = 0; i < trackers_.size(); i++)
-      {
-        trackers_[i].prediction();
-      }
-      visAllFilters();
       for(int i = 0; i < matches.size(); i++)
       {
         ROS_DEBUG("Track %d has %d matches", i, matches[i].size());
@@ -185,6 +185,7 @@ namespace estimator
         { 
           // New element Construct & assign
           std::string cons_reason = (trackers_.size() > measurements_.size()?"out_gates":"new");
+          ROS_INFO("Couldn't find match for measurement %d at %.2f, %.2f", meas_id, measurements_[meas_id].x_, measurements_[meas_id].y_);
           trackers_.push_back(kalman_filter::kalmanFilter(trackers_.size(), cons_reason)); // Lets color these different
           trackers_.back().assign(measurements_[meas_id]); // Assign to new element
         }

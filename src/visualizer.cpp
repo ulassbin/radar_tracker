@@ -34,8 +34,8 @@ namespace visualizer
 	  marker.id = count;
     marker.pose.position.x = x;
     marker.pose.position.y = y;
-    marker.scale.x = 2.0 * sqrt(tol/sk_inv(0,0));
-    marker.scale.y = 2.0 * sqrt(tol/sk_inv(1,1));
+    marker.scale.x = sqrt(tol/sk_inv(0,0));
+    marker.scale.y = sqrt(tol/sk_inv(1,1));
     marker.scale.z = 0.1;
 	  pub_.publish(marker);
   }
@@ -43,6 +43,7 @@ namespace visualizer
   void visualizer::visualizeArrays(std::vector<measurement> measurements)
   {
   	visualization_msgs::Marker marker;
+    marker.ns = "raw_measurements";
   	int count = 0;
   	marker.pose.orientation.x = 0;
   	marker.pose.orientation.y = 0;
@@ -55,12 +56,14 @@ namespace visualizer
   	marker.color.a = 1.0;
   	marker.header.frame_id = "sensor";
   	marker.header.stamp = ros::Time::now();
-    marker.action = 0;
     marker.type = 1;
-
+    
+    marker.action = 2; // Clear here
+    pub_.publish(marker);
+    
+    marker.action = 0;
   	for(auto measurement : measurements)
   	{
-  	  marker.ns = std::to_string(count);
   	  marker.id = count;
   	  marker.scale.x = measurement.d_;
   	  marker.scale.y = measurement.w_;
