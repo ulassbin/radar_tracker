@@ -8,7 +8,7 @@ namespace visualizer
     pub_ = nh.advertise<visualization_msgs::Marker>("/sensor_visualization", 10, false);
   }
 
-  void visualizer::visualizeTwo2DGates(double x, double y, Eigen::MatrixXd sk_inv, double tol, int id)
+  void visualizer::visualize2DGates(double x, double y, Eigen::MatrixXd sk_inv, double tol, int id)
   {
   	// Gate: inv*Sk^-1*inv <= tolerance
   	// [x y] * | a b; c d | *[x y]^T = tol
@@ -73,7 +73,7 @@ namespace visualizer
   	}
   }
 
-  void visualizer::visFilterStates(Eigen::VectorXd mean, Eigen::MatrixXd cov, std::string ns)
+  void visualizer::visFilterStates(Eigen::VectorXd mean, Eigen::MatrixXd cov, std::string ns, std::string state)
   {
   	visualization_msgs::Marker marker;
   	int count = 0;
@@ -82,11 +82,27 @@ namespace visualizer
   	marker.pose.orientation.z = 0;
   	marker.pose.orientation.w = 1;
   	marker.pose.position.z = 0;
-  	marker.color.r = 1.0;
-  	marker.color.g = 0.0;
-  	marker.color.b = 0.0;
-  	marker.color.a = 0.5;
-  	
+  	if(state == "initial")
+  	{
+  		marker.color.r = 1.0;
+  		marker.color.g = 0.0;
+  		marker.color.b = 0.0;
+  		marker.color.a = 0.5;
+  	}
+  	else if(state == "new")
+  	{
+  		marker.color.r = 0.0;
+  		marker.color.g = 1.0;
+  		marker.color.b = 0.0;
+  		marker.color.a = 0.5;
+  	}
+  	else if(state == "out_gates")
+  	{
+			marker.color.r = 0.0;
+  		marker.color.g = 0.0;
+  		marker.color.b = 1.0;
+  		marker.color.a = 0.5;
+  	}
   	marker.header.frame_id = "sensor";
   	marker.header.stamp = ros::Time::now();
     marker.action = 0;

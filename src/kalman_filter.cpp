@@ -2,19 +2,20 @@
 
 namespace kalman_filter
 {
-  kalmanFilter::kalmanFilter(int i)
+  kalmanFilter::kalmanFilter(int i, std::string state)
   {
     id_ = i;
-  	// max vol in w-h-m is around 3m so +-1.5m initial guess is good
-  	ROS_INFO("Constructed blank filter");
-  	cov_ = Eigen::MatrixXd(7, 7);
-  	cov_ << 4,0,0,0,0,0,0, // Cov0 init 10m mistake initially
-  	        0,4,0,0,0,0,0, // Velocity? lets say +-1.25 (From min-max in data)
-  	        0,0,1.6,0,0,0,0,
-  	        0,0,0,1.6,0,0,0,
-  	        0,0,0,0,2.25,0,0,
-  	        0,0,0,0,0,2.25,0,
-  	        0,0,0,0,0,0,2.25;
+    state_ = state;
+    // max vol in w-h-m is around 3m so +-1.5m initial guess is good
+    ROS_INFO("Constructed blank filter");
+    cov_ = Eigen::MatrixXd(7, 7);
+    cov_ << 4,0,0,0,0,0,0, // Cov0 init 10m mistake initially
+            0,4,0,0,0,0,0, // Velocity? lets say +-1.25 (From min-max in data)
+            0,0,1.6,0,0,0,0,
+            0,0,0,1.6,0,0,0,
+            0,0,0,0,2.25,0,0,
+            0,0,0,0,0,2.25,0,
+            0,0,0,0,0,0,2.25;
     Qt_ = Eigen::MatrixXd(7,7);
     Qt_ << 0.25,0, 0,0, 0,0,0,
           0,0.25, 0,0, 0,0,0,
@@ -24,15 +25,15 @@ namespace kalman_filter
           0,0, 0,0, 0,0.2,0,
           0,0, 0,0, 0,0,0.2;
 
-  	mean_ = Eigen::VectorXd(7);
-  	mean_ << 5, 5, 0, 0, 1.5, 1.5, 1.5;
-  	cov_p_ = cov_;
-  	mean_p_ = mean_;
+    mean_ = Eigen::VectorXd(7);
+    mean_ << 5, 5, 0, 0, 1.5, 1.5, 1.5;
+    cov_p_ = cov_;
+    mean_p_ = mean_;
   }
 
   kalmanFilter::~kalmanFilter()
   {
-  	ROS_INFO("Goodbye");
+  	ROS_DEBUG("Goodbye");
   }
 
   void kalmanFilter::assign(measurement meas)
@@ -121,7 +122,7 @@ namespace kalman_filter
       inv = (common::toEigen(measurements[match_vect[id].first]) - Ct*mean_p_);
       innovations.push_back(inv);
       weights.push_back(match_vect[id].second*norm);
-      ROS_INFO("Track %d, match %d, weight %.2f",this->id_, id, weights[id]);
+      ROS_DEBUG("Track %d, match %d, weight %.2f",this->id_, id, weights[id]);
       weighted_inv += (weights[id]) * inv;
     }
     double add_cov = 0;
@@ -138,7 +139,7 @@ namespace kalman_filter
     Pk = Kgain * add_cov *Kgain.transpose();
     // Pk|k = cov_
     //cov_ = cov_p_ - (1-b0)*Kgain*Sk*Kgain.transpose() + Pk;
-    cov_ = b0*cov_p_ + (1-b0)* (Eigen::MatrixXd::Identity(7,7) -Kgain*Ct)*cov_p_;// + (1-b0)*Pk;
+    cov_ = b0*cov_p_ + (1-b0)* (Eigen::MatrixXd::Identity(7,7) -Kgain*Ct)*cov_p_ + (1-b0)*Pk;
     mean_ += Kgain*weighted_inv;
 
     msg_.update_count += 1;

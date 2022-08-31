@@ -35,7 +35,7 @@ namespace common
   	{
   	  type_ = d[0];
   	  no_ = d[1];
-  	  id_ = d[2];
+  	  id_ = d[2]; // IF ID == 0 it seems like a no match.
   	  x_ = d[3];
   	  y_ = d[4];
   	  x_vel_ = d[5];
@@ -81,6 +81,8 @@ namespace common
   	  	  temp_d.push_back(msg.data[obj_id + feat_id*10]);
   	  	}
   	  	temp.parse(temp_d);
+        if(temp.id_ == 0) // Skipping this assignment since it is an empty field.
+          continue; 
   	  	measurements.push_back(temp);
   	  }
   	}

@@ -72,6 +72,11 @@ class estimator
      * @details Broadcasts the debug msg formed by filter states.
      */
     void broadcastDebugMsg();
+
+    /**
+     * @details Visualizes all tracked filter states.
+     */
+    void visAllFilters();
     ros::Subscriber sub_msgs_;
     ros::Publisher pub_debug_;
     ros::Timer timer_;

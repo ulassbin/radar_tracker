@@ -35,8 +35,10 @@ class visualizer
     * @param mean is the raw values of filter. Positions, velocities and dimensions are all used here.
     * @param cov is the covariance of filter.
     * @param ns is just a namespace parameter to select-deselect during rviz visualization.
+    * @param state is a state variable describing why the filter is created, this is used to change color
+    * during visualization.
     */ 
-    void visFilterStates(Eigen::VectorXd mean, Eigen::MatrixXd cov, std::string ns);
+    void visFilterStates(Eigen::VectorXd mean, Eigen::MatrixXd cov, std::string ns, std::string state);
     /**
      * @brief Visualizes gates of measurements.
      * @param x is the X position of track
@@ -49,7 +51,7 @@ class visualizer
      * If a position - velocity combination falls inside these n dimensional elipses, it will be 
      * fed to the filters as measurement.
      */
-    void visualizeTwo2DGates(double x, double y, Eigen::MatrixXd sk_inv, double tol, int id);
+    void visualize2DGates(double x, double y, Eigen::MatrixXd sk_inv, double tol, int id);
   private:
     ros::Publisher pub_;
 };

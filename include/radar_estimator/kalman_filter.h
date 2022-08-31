@@ -29,11 +29,15 @@ class kalmanFilter
   //Sensor model
   // Yk = HkXk + Vk
   // x = { xpos,ypos, xdot,ydot, ...}
-  public: 
+  public:
   /**
    * @brief Class constructor with id.
    */
-  kalmanFilter(int i);
+  kalmanFilter(int i, std::string state);
+  /**
+   * @brief Class constructor with id.
+   */
+  kalmanFilter(int i) : kalmanFilter(i, "initial") {};
   /**
    * @brief Destructor definition
    * @details This could be useful for removing unnecessary tracks later on.
@@ -77,6 +81,7 @@ class kalmanFilter
   Eigen::VectorXd mean_p_;//(7);
   bool first_ = true;
   radar_estimator::Filter msg_;
+  std::string state_;
 
   private:
   /**
@@ -90,7 +95,6 @@ class kalmanFilter
    */
   void updateMsg();
   int id_;
-  std::string state_;
   std::vector<double> process_noise_;
   Eigen::MatrixXd Qt_;
 };
